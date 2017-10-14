@@ -99,6 +99,7 @@
     <Compile Include="UnitTests\Manipulation\Repositories\DBaseGenericRepositoryTest.cs" />
     <Compile Include="UnitTests\Manipulation\Repositories\MockGenericRepositoryTest.cs" />
     <Compile Include="UnitTests\Manipulation\Services\DBaseErrorsReportingServiceTest.cs" />
+    <Compile Include="UnitTests\Manipulation\Services\MockErrorsReportingServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

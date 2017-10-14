@@ -30,28 +30,32 @@ namespace ErrorReporting.Dal.Tests.Data.Mocked
                     Id = 1,
                     Name = "TestApplicationAlreadyExisting",
                     Version = "1.0.0.0",
-                    FirstRunDate = new DateTime(2000, 1, 1)
+                    FirstRunDate = new DateTime(2000, 1, 1), 
+                    RowVersion = new byte[] { 0, 0, 0, 0, 0, 0, 0, 1 }
                 },
                 new ErrorReportApplication
                 {
                     Id = 2,
                     Name = "TestApplicationForVersion",
                     Version = "1.0.0.1",
-                    FirstRunDate = new DateTime(2100, 1, 1)
+                    FirstRunDate = new DateTime(2100, 1, 1),
+                    RowVersion = new byte[] { 0, 0, 0, 0, 0, 0, 0, 1 }
                 },
                 new ErrorReportApplication
                 {
                     Id = 3,
                     Name = "TestApplicationForUpdate",
                     Version = "1.0.0.0",
-                    FirstRunDate = new DateTime(2200, 1, 1)
+                    FirstRunDate = new DateTime(2200, 1, 1),
+                    RowVersion = new byte[] { 0, 0, 0, 0, 0, 0, 0, 1 }
                 },
                 new ErrorReportApplication
                 {
                     Id = 4,
                     Name = "TestApplicationForDelete",
                     Version = "1.0.0.0",
-                    FirstRunDate = new DateTime(2300, 1, 1)
+                    FirstRunDate = new DateTime(2300, 1, 1),
+                    RowVersion = new byte[] { 0, 0, 0, 0, 0, 0, 0, 1 }
                 },
             });
             #endregion
