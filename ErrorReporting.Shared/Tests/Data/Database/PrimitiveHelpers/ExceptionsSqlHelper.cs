@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ErrorReporting.Dal.Tests.Data.Database.PrimitiveHelpers
+namespace ErrorReporting.Shared.Tests.Data.Database.PrimitiveHelpers
 {
-    internal class ExceptionsSqlHelper
+    public class ExceptionsSqlHelper
     {
         private SqlConnection connection;
 

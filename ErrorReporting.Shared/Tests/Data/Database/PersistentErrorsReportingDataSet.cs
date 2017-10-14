@@ -1,4 +1,4 @@
-﻿using ErrorReporting.Dal.Tests.Data.Database.PrimitiveHelpers;
+﻿using ErrorReporting.Shared.Tests.Data.Database.PrimitiveHelpers;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ErrorReporting.Dal.Tests.Data.Database
+namespace ErrorReporting.Shared.Tests.Data.Database
 {
     public class PersistentErrorsReportingDataSet : IDisposable
     {

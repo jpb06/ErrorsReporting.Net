@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ErrorReporting.Dal.Manipulation.Repositories
 {
-    internal class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseModel
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseModel
     {
         internal IErrorsReportingContext context;
         internal DbSet<TEntity> dbSet;

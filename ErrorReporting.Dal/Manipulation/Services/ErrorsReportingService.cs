@@ -80,7 +80,7 @@ namespace ErrorReporting.Dal.Manipulation.Services
             return application;
         }
 
-        public int? LogException(int idApplication, Exception exception)
+        public int? LogException(int idApplication, Exception exception, string errorCodeFullyQualifiedName)
         {
             if (exception == null) return null;
 
@@ -95,7 +95,9 @@ namespace ErrorReporting.Dal.Manipulation.Services
             exceptionModel.StackTrace = exception.StackTrace;
             exceptionModel.HelpLink = exception.HelpLink;
             exceptionModel.Date = DateTime.Now;
-            exceptionModel.IdInnerException = this.LogException(idApplication, exception.InnerException);
+            exceptionModel.IdInnerException = this.LogException(idApplication, exception.InnerException, errorCodeFullyQualifiedName);
+
+            exceptionModel.CustomErrorType = errorCodeFullyQualifiedName;
 
             this.exceptionRepository.Insert(exceptionModel);
 

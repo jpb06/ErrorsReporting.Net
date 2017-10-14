@@ -11,6 +11,6 @@ namespace ErrorReporting.Dal.Manipulation.Services.Contracts
     {
         ErrorReportApplication GetApplication(string name, string version);
         ErrorReportApplication CreateApplication(string name, string version);
-        int? LogException(int versionId, Exception exception);
+        int? LogException(int versionId, Exception exception, string errorCodeFullyQualifiedName);
     }
 }

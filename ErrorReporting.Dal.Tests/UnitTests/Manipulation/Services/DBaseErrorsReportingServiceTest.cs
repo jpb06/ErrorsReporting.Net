@@ -7,9 +7,9 @@ using ErrorReporting.Dal.Manipulation.Repositories.Contracts;
 using ErrorReporting.Dal.Manipulation.Services;
 using ErrorReporting.Dal.Manipulation.Services.Contracts;
 using ErrorReporting.Dal.Models;
-using ErrorReporting.Dal.Tests.Data.Database;
-using ErrorReporting.Dal.Tests.Data.Database.PrimitiveHelpers;
-using ErrorReporting.Dal.Tests.Exceptions;
+using ErrorReporting.Shared.Tests.Data.Database;
+using ErrorReporting.Shared.Tests.Data.Database.PrimitiveHelpers;
+using ErrorReporting.Shared.Tests.Exceptions;
 using Microsoft.Practices.Unity;
 using NUnit.Framework;
 using System;
@@ -133,7 +133,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
                     int? id = null;
                     Assert.That(() =>
                     {
-                        id = service.LogException(this.dataSet.ApplicationsIds.ElementAt(0), exception);
+                        id = service.LogException(this.dataSet.ApplicationsIds.ElementAt(0), exception, "ErrorType.Specific");
                     }, Throws.Nothing);
 
                     Assert.IsNotNull(id);
@@ -161,7 +161,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
                     int? id = null;
                     Assert.That(() =>
                     {
-                        id = service.LogException(this.dataSet.ApplicationsIds.ElementAt(0), exception);
+                        id = service.LogException(this.dataSet.ApplicationsIds.ElementAt(0), exception, "ErrorType.Specific");
                     }, Throws.Nothing);
 
                     Assert.IsNotNull(id);

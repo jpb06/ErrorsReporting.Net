@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ErrorReporting.Dal.Tests.Data.Mocked
+namespace ErrorReporting.Shared.Tests.Data.Mocked
 {
     public class VolatileDataset
     {

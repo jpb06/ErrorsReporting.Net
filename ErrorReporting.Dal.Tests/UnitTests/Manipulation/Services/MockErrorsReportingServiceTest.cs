@@ -3,8 +3,8 @@ using ErrorReporting.Dal.Exceptions.CustomTypes;
 using ErrorReporting.Dal.Manipulation.Services;
 using ErrorReporting.Dal.Manipulation.Services.Contracts;
 using ErrorReporting.Dal.Models;
-using ErrorReporting.Dal.Tests.Data.Mocked;
-using ErrorReporting.Dal.Tests.Exceptions;
+using ErrorReporting.Shared.Tests.Data.Mocked;
+using ErrorReporting.Shared.Tests.Exceptions;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -111,8 +111,10 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
             VolatileDataset store = new VolatileDataset();
 
             Mock<IErrorsReportingService> mockService = new Mock<IErrorsReportingService>();
-            mockService.Setup(s => s.LogException(It.IsIn<int>(store.Applications.Select(a => a.Id)), It.IsAny<Exception>()))
-                       .Callback<int, Exception>((idApplicaton, exception) =>
+            mockService.Setup(s => s.LogException(It.IsIn<int>(store.Applications.Select(a => a.Id)), 
+                                                  It.IsAny<Exception>(),
+                                                  It.IsAny<string>()))
+                       .Callback<int, Exception, string>((idApplicaton, exception, errorCore) =>
                        {
                            store.Exceptions.Add(new ErrorReportException
                            {
@@ -125,7 +127,8 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
                                SiteName = exception.TargetSite.Name,
                                StackTrace = exception.StackTrace,
                                HelpLink = exception.HelpLink,
-                               Date = DateTime.Now
+                               Date = DateTime.Now, 
+                               CustomErrorType = errorCore, 
                            });
                        })
                        .Returns((int?)1);
@@ -141,7 +144,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
                 int? id = null;
                 Assert.That(() =>
                 {
-                    id = service.LogException(store.Applications.First().Id, exception);
+                    id = service.LogException(store.Applications.First().Id, exception, "ErrorType.Specific");
                 }, Throws.Nothing);
 
                 Assert.IsNotNull(id);
@@ -156,8 +159,10 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
             VolatileDataset store = new VolatileDataset();
 
             Mock<IErrorsReportingService> mockService = new Mock<IErrorsReportingService>();
-            mockService.Setup(s => s.LogException(It.IsIn<int>(store.Applications.Select(a => a.Id)), It.IsAny<Exception>()))
-                       .Callback<int, Exception>((idApplicaton, exception) =>
+            mockService.Setup(s => s.LogException(It.IsIn<int>(store.Applications.Select(a => a.Id)), 
+                                                  It.IsAny<Exception>(),
+                                                  It.IsAny<string>()))
+                       .Callback<int, Exception, string>((idApplicaton, exception, errorCode) =>
                        {
                            store.Exceptions.Add(new ErrorReportException
                            {
@@ -170,7 +175,8 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
                                SiteName = exception.TargetSite.Name,
                                StackTrace = exception.StackTrace,
                                HelpLink = exception.HelpLink,
-                               Date = DateTime.Now, 
+                               Date = DateTime.Now,  
+                               CustomErrorType = errorCode,
                                IdInnerException = 2
                            });
                            store.Exceptions.Add(new ErrorReportException
@@ -185,6 +191,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
                                StackTrace = exception.InnerException.StackTrace,
                                HelpLink = exception.InnerException.HelpLink,
                                Date = DateTime.Now,
+                               CustomErrorType = errorCode
                            });
                        })
                        .Returns((int?)1);
@@ -200,7 +207,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
                 int? id = null;
                 Assert.That(() =>
                 {
-                    id = service.LogException(store.Applications.First().Id, exception);
+                    id = service.LogException(store.Applications.First().Id, exception, "ErrorType.Specific");
                 }, Throws.Nothing);
 
                 Assert.IsNotNull(id);

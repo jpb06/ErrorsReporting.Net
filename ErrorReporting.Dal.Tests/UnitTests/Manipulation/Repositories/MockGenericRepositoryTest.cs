@@ -2,7 +2,7 @@
 using ErrorReporting.Dal.Manipulation.Repositories;
 using ErrorReporting.Dal.Manipulation.Repositories.Contracts;
 using ErrorReporting.Dal.Models;
-using ErrorReporting.Dal.Tests.Data.Mocked;
+using ErrorReporting.Shared.Tests.Data.Mocked;
 using Moq;
 using NUnit.Framework;
 using System;

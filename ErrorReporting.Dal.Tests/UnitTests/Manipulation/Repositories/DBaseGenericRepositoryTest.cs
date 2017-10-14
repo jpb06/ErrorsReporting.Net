@@ -2,7 +2,7 @@
 using ErrorReporting.Dal.Context.Contracts;
 using ErrorReporting.Dal.Manipulation.Repositories;
 using ErrorReporting.Dal.Models;
-using ErrorReporting.Dal.Tests.Data.Database;
+using ErrorReporting.Shared.Tests.Data.Database;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
