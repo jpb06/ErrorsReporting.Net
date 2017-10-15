@@ -7,6 +7,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,8 +26,10 @@ namespace ErrorReporting.Business.Tests.UnitTests.Managers
             VolatileDataset store = new VolatileDataset();
 
             Mock<IErrorsReportingManager> mockManager = new Mock<IErrorsReportingManager>();
-            mockManager.Setup(m => m.LogError(It.IsAny<Exception>(), It.IsAny<string>()))
-                       .Callback<Exception, string>((exception, errorCode) =>
+            mockManager.Setup(m => m.LogError(It.IsAny<Exception>(), 
+                                              It.IsAny<AssemblyName>(), 
+                                              It.IsAny<string>()))
+                       .Callback<Exception, AssemblyName, string>((exception, assemblyName, errorCode) =>
                        {
                            store.Exceptions.Add(new ErrorReportException
                            {
@@ -53,10 +56,12 @@ namespace ErrorReporting.Business.Tests.UnitTests.Managers
             {
                 Assert.That(() =>
                 {
-                    this.errorsReportingManager.LogError(exception, "ErrorType.Specific");
+                    this.errorsReportingManager.LogError(exception, 
+                                                         Assembly.GetExecutingAssembly().GetName(), 
+                                                         "ErrorType.Specific");
                 }, Throws.Nothing);
 
-                mockManager.Verify(m => m.LogError(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once());
+                mockManager.Verify(m => m.LogError(It.IsAny<Exception>(), It.IsAny<AssemblyName>(), It.IsAny<string>()), Times.Once());
                 Assert.AreEqual(1, store.Exceptions.Count);
             }
         }

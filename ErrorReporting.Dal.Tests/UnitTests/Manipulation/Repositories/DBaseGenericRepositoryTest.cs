@@ -122,7 +122,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Repositories
         [Test]
         public void Db_Repository_GetApplications_VersionFiltered()
         {
-            var applications = this.repository.Get(app => app.Version == "1.1.1.1");
+            var applications = this.repository.Get(app => app.Version == "a.a.a.b");
 
             Assert.AreEqual(3, applications.Count());
         }
@@ -132,7 +132,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Repositories
         {
             var applications = this.repository.Get(orderBy: q => q.OrderByDescending(a => a.FirstRunDate));
 
-            Assert.AreEqual(5, applications.Count());
+            Assert.GreaterOrEqual(applications.Count(), 5);
             Assert.AreEqual("TestApplicationForVersion", applications.First().Name);
             Assert.AreEqual("TestApplicationWithVersion3", applications.Last().Name);
             
@@ -141,18 +141,18 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Repositories
         [Test]
         public void Db_Repository_GetApplications_FilteredAndOrdered()
         {
-            var applications = this.repository.Get(filter: app => app.FirstRunDate.Year > 2000,
+            var applications = this.repository.Get(filter: app => app.FirstRunDate.Year < 2012,
                                                    orderBy: q => q.OrderByDescending(a => a.FirstRunDate));
 
             Assert.AreEqual(3, applications.Count());
-            Assert.AreEqual("TestApplicationForVersion", applications.First().Name);
-            Assert.AreEqual("TestApplicationWithVersion1", applications.Last().Name);    
+            Assert.AreEqual("TestApplicationWithVersion1", applications.First().Name);
+            Assert.AreEqual("TestApplicationWithVersion3", applications.Last().Name);    
         }
 
         [Test]
         public void Db_Repository_GetWithRawSql()
         {
-            var param = new SqlParameter("version", "1.0.0.0");
+            var param = new SqlParameter("version", "a.a.a.a");
             var applications = this.repository.GetWithRawSql("SELECT * FROM [dbo].[Applications] WHERE [Applications].[Version] = @version;", param);
 
             Assert.AreEqual(2, applications.Count());

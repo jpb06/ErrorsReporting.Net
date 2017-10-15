@@ -82,7 +82,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
 
                 DalException ex = Assert.Throws<DalException>(() =>
                 {
-                    service.CreateApplication("TestApplicationAlreadyExisting", "1.0.0.0");
+                    service.CreateApplication("TestApplicationAlreadyExisting", "a.a.a.a");
                 });
                 Assert.That(ex.errorType, Is.EqualTo(DalErrorType.SqlUniqueConstraintViolation));
             }
@@ -94,7 +94,7 @@ namespace ErrorReporting.Dal.Tests.UnitTests.Manipulation.Services
             using (IUnityContainer childContainer = this.container.CreateChildContainer())
             {
                 IErrorsReportingService service = childContainer.Resolve<IErrorsReportingService>();
-                ErrorReportApplication application = service.GetApplication("TestApplicationAlreadyExisting", "1.0.0.0");
+                ErrorReportApplication application = service.GetApplication("TestApplicationAlreadyExisting", "a.a.a.a");
 
                 Assert.Greater(application.Id, 0);
                 Assert.AreEqual(new DateTime(2000, 1, 1), application.FirstRunDate);
