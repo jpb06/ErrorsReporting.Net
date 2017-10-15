@@ -59,6 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\BusinessErrorType.cs" />
+    <Compile Include="Exceptions\ErrorCodeExtensions.cs" />
+    <Compile Include="Managers\Contracts\IErrorsReportingManager.cs" />
+    <Compile Include="Managers\ErrorsReportingManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,8 +86,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ErrorsReporting\" />
+    <ProjectReference Include="..\ErrorReporting.Dal\ErrorReporting.Dal.csproj">
+      <Project>{84ea0e79-602c-4d89-9225-646d8ca760df}</Project>
+      <Name>ErrorReporting.Dal</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
