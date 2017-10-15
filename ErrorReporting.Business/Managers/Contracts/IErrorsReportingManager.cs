@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace ErrorReporting.Business.Managers.Contracts
 {
-    public interface IErrorsReportingManager
+    public interface IErrorsReportingManager : IManager
     {
-        void LogError(Exception exception, string errorCode);
+        void LogError(Exception exception, AssemblyName assemblyName, string errorCode);
     }
 }

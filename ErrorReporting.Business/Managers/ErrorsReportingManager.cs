@@ -21,10 +21,8 @@ namespace ErrorReporting.Business.Managers
             this.reportingService = reportingService;
         }
 
-        public void LogError(Exception exception, string errorCode)
+        public void LogError(Exception exception, AssemblyName assemblyName, string errorCode)
         {
-            AssemblyName assemblyName = Assembly.GetExecutingAssembly().GetName();
-
             string applicationName = assemblyName.Name;
             string applicationVersion = assemblyName.Version.ToString();
 
