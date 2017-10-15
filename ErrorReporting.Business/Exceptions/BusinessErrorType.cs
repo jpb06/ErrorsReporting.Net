@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ErrorReporting.Business.Exceptions
 {
-    public enum BusinessErrorType
+    public class BusinessErrorType
     {
+        // public static readonly string ...
     }
 }
