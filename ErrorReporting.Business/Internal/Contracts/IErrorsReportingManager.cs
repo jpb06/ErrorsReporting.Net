@@ -7,9 +7,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ErrorReporting.Business.Managers.Contracts
+namespace ErrorReporting.Business.Internal.Contracts
 {
-    public interface IErrorsReportingManager : IManager
+    internal interface IErrorsReportingManager
     {
         void LogError(Exception exception, AssemblyName assemblyName, string errorCode);
     }

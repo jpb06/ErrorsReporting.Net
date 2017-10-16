@@ -1,5 +1,4 @@
-﻿using ErrorReporting.Business.IoC;
-using ErrorReporting.Business.Managers.Contracts;
+﻿using ErrorReporting.Business.Exposed;
 using ErrorReporting.Front.AssemblyInformation;
 using ErrorReporting.Front.Exceptions;
 using Microsoft.Practices.Unity;
@@ -23,8 +22,9 @@ namespace ErrorReporting.Front
             }
             catch (Exception exception) 
             {
-                IErrorsReportingManager m = BusinessLocator.GetManager<IErrorsReportingManager>();
-                m.LogError(exception, AssemblyHelper.AssemblyName, FrontErrorType.DivideByZero);
+                Logging.Save(exception, AssemblyHelper.AssemblyName, FrontErrorType.DivideByZero);
+                Logging.Save(exception, AssemblyHelper.AssemblyName, FrontErrorType.DivideByZero);
+                Logging.Save(exception, AssemblyHelper.AssemblyName, FrontErrorType.DivideByZero);
             }
         }
     }

@@ -1,6 +1,4 @@
-﻿using ErrorReporting.Business.Exceptions;
-using ErrorReporting.Business.Managers.Contracts;
-using ErrorReporting.Dal.Exceptions;
+﻿using ErrorReporting.Business.Internal.Contracts;
 using ErrorReporting.Dal.Manipulation.Services.Contracts;
 using ErrorReporting.Dal.Models;
 using System;
@@ -10,9 +8,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ErrorReporting.Business.Managers
+namespace ErrorReporting.Business.Internal
 {
-    public class ErrorsReportingManager : IErrorsReportingManager
+    internal class ErrorsReportingManager : IErrorsReportingManager
     {
         private IErrorsReportingService reportingService;
 

@@ -85,10 +85,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\BusinessErrorType.cs" />
-    <Compile Include="IoC\BusinessLocator.cs" />
-    <Compile Include="Managers\Contracts\IErrorsReportingManager.cs" />
-    <Compile Include="Managers\Contracts\IManager.cs" />
-    <Compile Include="Managers\ErrorsReportingManager.cs" />
+    <Compile Include="Exposed\Logging.cs" />
+    <Compile Include="InversionOfControl\IoCConfiguration.cs" />
+    <Compile Include="Internal\Contracts\IErrorsReportingManager.cs" />
+    <Compile Include="Internal\ErrorsReportingManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

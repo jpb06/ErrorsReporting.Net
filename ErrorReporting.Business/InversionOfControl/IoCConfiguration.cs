@@ -1,5 +1,5 @@
-﻿using ErrorReporting.Business.Managers;
-using ErrorReporting.Business.Managers.Contracts;
+﻿using ErrorReporting.Business.Internal;
+using ErrorReporting.Business.Internal.Contracts;
 using ErrorReporting.Dal.Context;
 using ErrorReporting.Dal.Context.Contracts;
 using ErrorReporting.Dal.Manipulation.Repositories;
@@ -10,16 +10,17 @@ using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ErrorReporting.Business.IoC
+namespace ErrorReporting.Business.InversionOfControl
 {
-    public static class BusinessLocator
+    internal static class IoCConfiguration
     {
-        private static readonly UnityContainer container;
+        public static readonly UnityContainer container;
 
-        static BusinessLocator() 
+        static IoCConfiguration() 
         {
             container = new UnityContainer();
 
@@ -28,11 +29,6 @@ namespace ErrorReporting.Business.IoC
             container.RegisterType<IErrorsReportingService, ErrorsReportingService>();
 
             container.RegisterType<IErrorsReportingManager, ErrorsReportingManager>();
-        }
-
-        public static T GetManager<T>() where T : IManager 
-        {
-            return container.Resolve<T>();
         }
     }
 }

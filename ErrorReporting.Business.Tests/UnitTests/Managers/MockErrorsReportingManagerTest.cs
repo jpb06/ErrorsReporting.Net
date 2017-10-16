@@ -1,4 +1,4 @@
-﻿using ErrorReporting.Business.Managers.Contracts;
+﻿using ErrorReporting.Business.Internal.Contracts;
 using ErrorReporting.Dal.Models;
 using ErrorReporting.Shared.Tests.Data.Mocked;
 using ErrorReporting.Shared.Tests.Exceptions;
