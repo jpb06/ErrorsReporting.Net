@@ -8,6 +8,6 @@ namespace ErrorReporting.Front.Exceptions
 {
     public class FrontErrorType
     {
-        public static readonly string DivideByZero = "DivideByZero";
+        public static readonly string DivideByZero = "Front.DivideByZero";
     }
 }

@@ -13,9 +13,9 @@ namespace ErrorReporting.Dal.Exceptions
 
         // --------------------------------------------------------------------------
         //                                                                 Exceptions 
-        public static readonly string SqlError = "SqlError";
-        public static readonly string SqlUniqueConstraintViolation = "SqlUniqueConstraintViolation";
-        public static readonly string SqlConstraintCheckViolation = "SqlConstraintCheckViolation";
+        public static readonly string SqlError = "Dal.SqlError";
+        public static readonly string SqlUniqueConstraintViolation = "Dal.SqlUniqueConstraintViolation";
+        public static readonly string SqlConstraintCheckViolation = "Dal.SqlConstraintCheckViolation";
         // --------------------------------------------------------------------------
         //                                                         Repositories stack 
 
